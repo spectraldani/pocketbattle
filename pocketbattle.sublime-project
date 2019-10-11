@@ -1,13 +1,23 @@
 {
-	"folders":
-	[
-		{
-			"name": "Source",
-			"path": "./src/"
-		},
-		{
-			"name": "Root",
-			"path": "."
-		}
-	]
+    "folders":
+    [
+        {
+            "name": "Source",
+            "path": "./src/"
+        },
+        {
+            "name": "Integration Tests",
+            "path": "./tests/"
+        },
+        {
+            "name": "Root",
+            "path": "."
+        }
+    ],
+    "settings": {
+        "translate_tabs_to_spaces": true,
+        "tab_size": 4,
+        "wrap_width": 100,
+        "rulers": [100]
+    }
 }
