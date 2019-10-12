@@ -22,8 +22,14 @@ pub enum MonsterType {
 }
 
 impl Types {
-    pub fn get_pretty_name(&self,type_id: TypeIndex) -> &str {
+    pub fn get_type_index_name(&self,type_id: TypeIndex) -> &str {
         &self.names[type_id as usize]
+    }
+    pub fn get_monster_type_name(&self,monster_type: MonsterType) -> &str {
+        match monster_type {
+            MonsterType::Single(type_id) => self.get_type_index_name(type_id),
+            MonsterType::Double(_,_) => unimplemented!(),
+        }
     }
     pub fn get_attack_effectiveness(&self,attacker: TypeIndex, defender: MonsterType) -> f32 {
         match defender {
