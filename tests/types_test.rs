@@ -1,18 +1,16 @@
-fn read_crystal() -> pocketbattle::System {
-    pocketbattle::System::from_file("./tests/crystal.toml").unwrap()
+use pocketbattle::*;
+
+fn read_crystal() -> System {
+    System::from_file("./tests/crystal.toml").unwrap()
 }
 
 #[test]
 fn create_chikorita() {
-    use pocketbattle::types;
-    use pocketbattle::stats::Stats;
-    use pocketbattle::species;
-
     let system = read_crystal();
     let chikorita = species::Species {
         name: "Chikorita".to_string(),
         typing: types::MonsterType::Single(7),
-        stats: Stats {hp:45,atk:49,def:65,spd:45,sat:49,sdf:65},
+        stats: stats::Stats {hp:45,atk:49,def:65,spd:45,sat:49,sdf:65},
         female_chance: 12.5,
         capture_rate: 45,
         happiness: 70,
