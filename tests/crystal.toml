@@ -35,12 +35,13 @@ chart = [
 # List of Species
 [[species]]
 name = 'Bulbasaur'
-typing = 7
+typing = [7]
 stats = {hp=45, atk=49, def=49, spd=45, sat=65, sdf=65}
 female_chance = 12.5
-capture_rate = 45
+catch_rate = 45
+hatch_cycles = 20
 happiness = 70
-experience_growth = 1
+experience_growth = "Slow"
 held_itens = []
 egg_groups = [0,6]
 level_up_moves = [

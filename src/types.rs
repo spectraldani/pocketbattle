@@ -1,5 +1,6 @@
 use ndarray::Array2;
 use serde::Deserialize;
+pub type TypeIndex = u8;
 
 #[derive(Debug,Deserialize)]
 struct SerializedTypes {
@@ -13,7 +14,6 @@ pub struct Types {
     names: Box<[String]>,
     chart: Array2<f32>
 }
-pub type TypeIndex = u8;
 
 #[derive(Debug)]
 pub enum MonsterType {
