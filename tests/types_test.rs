@@ -33,4 +33,5 @@ fn create_bulbasaur_monster() {
         hp: 19, atk: 9, def: 9, spd: 9, sat: 11, sdf: 11
     };
     assert_eq!(bulbasaur.current_stats, expected_stats);
+    assert_eq!(bulbasaur.gender, Some(monster::Gender::Female));
 }

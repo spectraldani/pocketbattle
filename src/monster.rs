@@ -1,13 +1,13 @@
-use super::stats::{Stats, IndividualValues};
+use super::stats::{Stat, Stats, IndividualValues};
 use super::species::{Species};
 
-#[derive(Debug)]
+#[derive(Debug,PartialEq,Eq)]
 pub enum Gender {
     Male,
     Female,
 }
 
-#[derive(Debug)]
+#[derive(Debug,PartialEq,Eq)]
 pub enum StatusCondition {
     SLP,
     PSN,
@@ -55,10 +55,18 @@ pub struct Monster<'system_lifetime> {
 impl<'system_lifetime> Monster<'system_lifetime> {
     pub fn from_species(species: &'system_lifetime Species) -> Monster {
         let ivs = IndividualValues::zeroes(); // todo
+        let gender = if species.female_chance.is_finite() {
+            match (ivs.get(Stat::Attack) as f32) < species.female_chance*15. {
+                true => Some(Gender::Female),
+                false => Some(Gender::Male),
+            }
+        } else {
+            None
+        };
         Monster {
             nickname: species.name.clone(),
             species: species,
-            gender: None, // todo
+            gender: gender,
             effort_values: Stats::zeroes(),
             individual_values: ivs,
             friendship: 0,
