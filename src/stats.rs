@@ -1,5 +1,4 @@
 use std::ops::Index;
-use serde::Deserialize;
 
 #[derive(Debug)]
 pub enum Stat {
@@ -11,7 +10,7 @@ pub enum Stat {
     SpecialDefense
 }
 
-#[derive(Debug,PartialEq,Copy,Clone,Deserialize)]
+#[derive(Debug,PartialEq,Copy,Clone)]
 pub struct Stats {
     pub hp: u16,
     pub atk: u16,

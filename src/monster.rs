@@ -35,9 +35,9 @@ impl InfectionStatus {
 }
 
 #[derive(Debug)]
-pub struct Monster<'system_lifetime> {
+pub struct Monster<'sys> {
     pub nickname: String,
-    pub species: &'system_lifetime Species,
+    pub species: &'sys Species,
     pub gender: Option<Gender>,
     // pub original_trainer_data: TrainerData,
     // pub held_item: Option<ItemIndex>,
@@ -52,8 +52,8 @@ pub struct Monster<'system_lifetime> {
     pub current_stats: Stats
 }
 
-impl<'system_lifetime> Monster<'system_lifetime> {
-    pub fn from_species(species: &'system_lifetime Species) -> Monster {
+impl<'sys> Monster<'sys> {
+    pub fn from_species(species: &'sys Species) -> Monster {
         let ivs = IndividualValues::zeroes(); // todo
         let gender = if species.female_chance.is_finite() {
             match (ivs.get(Stat::Attack) as f32) < species.female_chance*15. {

@@ -3,10 +3,11 @@ name = "pocketbattle"
 version = "0.1.0"
 authors = ["Daniel Ramos <sentret@outlook.com>"]
 edition = "2018"
+repository = "https://github.com/danisson/pocketbattle"
+readme = "README.md"
+license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-serde = { version = "1.0", features = ["derive"] }
-toml = "0.5"
 ndarray = "0.13.0"

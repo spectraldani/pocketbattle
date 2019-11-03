@@ -1,27 +1,22 @@
 use ndarray::Array2;
-use serde::Deserialize;
 pub type TypeIndex = u8;
-
-#[derive(Debug,Deserialize)]
-struct SerializedTypes {
-    ammount: u8,
-    names: Box<[String]>,
-    chart: Vec<f32>
-}
 
 #[derive(Debug)]
 pub struct Types {
-    names: Box<[String]>,
-    chart: Array2<f32>
+    pub names: Box<[String]>,
+    pub chart: Array2<f32>
 }
 
-#[derive(Debug)]
+#[derive(Debug,Copy,Clone)]
 pub enum MonsterType {
     Single(TypeIndex),
     Double(TypeIndex,TypeIndex),
 }
 
 impl Types {
+    pub fn get(&self, name: &str) -> TypeIndex {
+        self.names.iter().position(|x| x == name).unwrap() as TypeIndex
+    }
     pub fn get_type_index_name(&self,type_id: TypeIndex) -> &str {
         &self.names[type_id as usize]
     }
@@ -31,7 +26,7 @@ impl Types {
             MonsterType::Double(_,_) => unimplemented!(),
         }
     }
-    pub fn get_attack_effectiveness(&self,attacker: TypeIndex, defender: MonsterType) -> f32 {
+    pub fn get_effectiveness(&self,attacker: TypeIndex, defender: MonsterType) -> f32 {
         match defender {
             MonsterType::Single(defender) => self.chart[[attacker as usize, defender as usize]],
             MonsterType::Double(main,sec) => {
@@ -40,14 +35,12 @@ impl Types {
             }
         }
     }
-    pub fn from_toml(raw_types: toml::Value) -> Types {
-        let raw_types = raw_types.try_into::<SerializedTypes>().unwrap();
-        let dim = (raw_types.ammount as usize, raw_types.ammount as usize);
+
+    pub fn new(names: Box<[String]>, chart: Vec<f32>) -> Types {
+        let n = names.len();
         Types {
-            names: raw_types.names,
-            chart: Array2::from_shape_vec(dim,raw_types.chart).expect(
-                "Typechart with wrong dimensions"
-            ),
+            names,
+            chart: Array2::from_shape_vec((n,n),chart).unwrap()
         }
     }
 }

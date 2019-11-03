@@ -18,7 +18,7 @@ A Rust implementation of Pokémon Crystal's battle mechanics. This is meant to b
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
 ## Acknowledgments
 

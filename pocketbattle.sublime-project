@@ -3,21 +3,25 @@
     [
         {
             "name": "Source",
-            "path": "./src/"
+            "path": "src"
         },
         {
             "name": "Integration Tests",
-            "path": "./tests/"
+            "path": "tests"
         },
         {
             "name": "Root",
             "path": "."
         }
     ],
-    "settings": {
-        "translate_tabs_to_spaces": true,
+    "settings":
+    {
+        "rulers":
+        [
+            100
+        ],
         "tab_size": 4,
-        "wrap_width": 100,
-        "rulers": [100]
+        "translate_tabs_to_spaces": true,
+        "wrap_width": 100
     }
 }
